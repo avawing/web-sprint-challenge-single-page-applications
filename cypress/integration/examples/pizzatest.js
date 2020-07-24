@@ -3,8 +3,13 @@ describe('Pizza Test', () => {
         cy.visit('http://localhost:3000')
         cy.url().should('include', 'localhost')
         })
+    it('can click order', ()=>{
+        cy
+        .contains('Order')
+        .click()
+        })    
     it('can check that button is disabled', ()=>{
-        cy.get('#submitBtn').should('be.disabled')
+        cy.get('Button').should('be.disabled')
     })
     it('can enter a name', ()=>{
         cy
@@ -19,7 +24,7 @@ describe('Pizza Test', () => {
         .should('have.value', 'ava@ava.com')
     })
     it('can check that button is disabled', ()=>{
-        cy.get('#submitBtn').should('be.disabled')
+        cy.get('Button').should('be.disabled')
     })
     it('can select a slice', ()=>{
         cy
@@ -34,7 +39,7 @@ describe('Pizza Test', () => {
         .should('have.value', 'Why Would You Do This?')
     })
     it('can check that button is disabled', ()=>{
-        cy.get('#submitBtn').should('be.disabled')
+        cy.get('Button').should('be.disabled')
     })
    it('can select toppings', () => {
         cy
@@ -51,18 +56,18 @@ describe('Pizza Test', () => {
         .check()
     })
     it('can check that button is disabled', ()=>{
-        cy.get('#submitBtn').should('be.disabled')
+        cy.get('Button').should('be.disabled')
     })
        it('can enter instructions', ()=>{
         cy
         .get(`input[name='instructions']`)
         .type('None')
-        .should('have.value', '')
+        .should('have.value', 'None')
     })
     it('can check that button is not disabled', ()=>{
-        cy.get('#submitBtn').should('not.be.disabled')
+        cy.get('Button').should('not.be.disabled')
     })
     it('can submit form', () => {
-        cy.get('#submitBtn').click()
+        cy.get('Button').click()
          })
    })
