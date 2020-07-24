@@ -40,7 +40,7 @@ const initialOrder = []
 const initialDisabled = true
 
 export default function App(){
-    const [order, setOrder] = useState(initialOrder)
+    const [order, setOrder] = useState([initialOrder])
     const [errors, setErrors] = useState(initialErrors)
     const [form, setForm] = useState(emptyForm)
     const [disabled, setDisabled] = useState(initialDisabled)
@@ -49,7 +49,7 @@ export default function App(){
     //helperFunctions
 
     const postOrder = (newOrder) =>{
-      console.log(newOrder)
+
         axios
         .post(`https://reqres.in/api/users`, newOrder)
         .then(res => {
@@ -98,7 +98,6 @@ export default function App(){
     instructions: order.instructions.trim(),
     glutenFree: order.glutenFree
 }
-console.log(newOrder)
 postOrder(newOrder)
 setForm(emptyForm)
 }
@@ -115,9 +114,7 @@ useEffect(()=>{
       <Link to='/order'>Order Now!</Link>
       <Route exact path='/'></Route>
       <Route path = '/order'><Forma values = {form} submit = {onSubmit} inputChange = {inputChange} disabled = {disabled} errors = {errors}/>
-      {newOrder.map(item=>{
-        console.log(item)
-      })}
+      <Order order = {newOrder}/>
     </Route>
         
     </>
