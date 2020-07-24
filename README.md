@@ -31,8 +31,11 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question.
 
 1. In 1-2 sentences, explain what React's `useRouteMatch` hook is used for.
+To match the routes when using the :id thing.
 1. How would you explain form validation to someone who has never programmed before?
+You are checking to ensure that all aspects of the form match the required inputs.
 1. In 1-2 sentences, define end to end testing.
+Testing your website from access to egress.
 
 ## Instructions
 
@@ -49,8 +52,8 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 Your finished project must include all of the following requirements:
 
-- [ ] A homepage that has a "/" route and links to your form (button, nav bar, or any other type of link is acceptable)
-- [ ] A form with a "/pizza" route
+- [x] A homepage that has a "/" route and links to your form (button, nav bar, or any other type of link is acceptable)
+- [x] A form with a "/pizza" route
 - [x] A name text input field
 - [x] Validation for name - name must be at least 2 characters
 - [x] A dropdown for pizza size
