@@ -1,109 +1,105 @@
-import React, { useState, useEffect } from 'react'
-import formSchema from '../validation/FormSchema'
-import Order from './Order'
-import axios from 'axios'
-import * as yup from 'yup'
+import React from 'react'
+import { Button, Form, Label, Input, FormGroup} from 'reactstrap';
 
-const emptyForm = {
-    name: '',
-    email: '',
-    slice: null,
-    toppings: {
-        pepperoni: false,
-        olives: false,
-        mushrooms: false,
-        sausage: false,
-        pineapple: false
-    },
-    instructions: '',
-    glutenFree: false
-}
+export default function Forma (props){
+    const {
+            values,
+            submit,
+            inputChange,
+            disabled,
+            errors,
+    } = props
 
-const initialErrors = {
-    name: '',
-    email: '',
-    slice: null,
-    toppings: {
-        pepperoni: false,
-        olives: false,
-        mushrooms: false,
-        sausage: false,
-        pineapple: false
-    },
-    instructions: '',
-    glutenFree: false
-}
-
-const initialOrder = []
-const initialDisabled = true
-
-export default function App(){
-    const [order, setOrder] = useState(initialOrder)
-    const [errors, setErrors] = useState(initialErrors)
-    const [form, setForm] = useState(emptyForm)
-    const [disabled, setDisabled] = useState(initialDisabled)
-    
-    //helperFunctions
-
-    const postOrder = (newOrder) =>{
-        axios
-        .post(`https://reqres.in/`, newOrder)
-        .then(res => {
-            setOrder([res.data, ...order])
-            setForm(emptyForm)
-            console.log(res.data)
-        })
-        .catch(e => {
-            console.log(`${e}`)
-        })
+    const onChange = (event) =>{
+        const name = event.target.name
+        const values = event.target.value
+        inputChange(name, values)
     }
 
-    const inputChange = (name, value) => {
-        yup
-        .reach(formSchema, name)
-        .validate(value)
-        .then(valid => {
-          setErrors({
-            ...errors, [name]: ''
-          })
-        })
-        .catch(err => {
-          setErrors({
-            ...errors,
-            [name]: err.errors[0],
-          })
-        })
-        setOrder({
-          ...order,
-          [name]: value
-        })
+    const onSubmit = (event) =>{
+        event.preventDefault()
+        submit()
     }
+    return (
+        <Form onSubmit = {onSubmit}>
+            <Label htmlFor = 'name'>Name:</Label>
+            <Input 
+            name = 'name'
+            type = 'text'
+            id = 'name'
+            values = {values.name}
+            placeholder = "Enter Name"
+            onChange = {onChange}
+            />
 
-    const onSubmit = () => {
-        const newOrder = {
-            name: order.name.trim(),
-            email: order.email.trim(),
-    slice: null,
-    toppings: {
-        pepperoni: order.toppings.pepperoni,
-        olives: order.toppings.olives,
-        mushrooms: order.toppings.mushrooms,
-        sausage: order.toppings.sausage,
-        pineapple: order.toppings.pineapple
-    },
-    instructions: order.instructions.trim(),
-    glutenFree: order.glutenFree
-}
-postOrder(newOrder)
-}
+            <Label htmlFor = 'email'>Email:</Label>
+            <Input 
+            name = 'email'
+            type = 'text'
+            id = 'email'
+            values = {values.email}
+            placeholder = "Enter email"
+            onChange = {onChange}
+            />
 
-useEffect(()=>{
-    formSchema.isValid(order).then(valid => {
-        setDisabled(!valid)
-      })
-    }, [order])
-
-    return(
-        <Order />
+            <Label htmlFor = 'slice'>Slice:</Label>
+            <Input 
+            name = 'slice'
+            type = 'select'
+            id = 'slice'
+            values = {values.slice}
+            placeholder = "Enter slice"
+            onChange = {onChange}
+            >  
+                <option values = "Small">Small</option>
+                <option values = "Medium">Medium</option>
+                <option values = "Large">Large</option>
+                <option values = "Why Would You Do This?">Why Would You Do This?</option>
+            </Input>
+<FormGroup>
+            <Label for="pepperoni"> Pepperoni!
+<Input type="checkbox" id="pepperoni" name="pepperoni" values={values.toppings.pepperoni} onChange = {onChange}/>{' '}
+</Label>
+ <br />
+ <Label for="olives"> Olives!
+<Input type="checkbox" id="olives" name="olives" values={values.toppings.olives} onChange = {onChange}/>{' '}
+</Label>
+ <br />
+ <Label for="mushrooms"> Mushrooms!
+<Input type="checkbox" id="mushrooms" name="mushrooms" values={values.toppings.mushrooms} onChange = {onChange}/>{' '}
+</Label>
+ <br />
+ <Label for="sausage"> Sausage!
+<Input type="checkbox" id="sausage" name="sausage" values={values.toppings.sausage} onChange = {onChange}/>{' '}
+</Label>
+<br />
+<Label for="pineapple" > Pineapple!
+<Input type="checkbox" id="pineapple" name="pineapple" values={values.toppings.pineapple} onChange = {onChange}/>{' '}
+</Label>
+<br />
+</FormGroup>
+            <Label htmlFor = 'instructions'>Special Instructions:</Label>
+            <Input 
+            name = 'instructions'
+            type = 'text'
+            id = 'instructions'
+            values = {values.instructions}
+            placeholder = "Enter Instructions"
+            onChange = {onChange}
+            
+            />
+            <Label for="glutenFree"> Gluten Free!
+            <Input type="checkbox" id="glutenFree" name="glutenFree" values={values.toppings.glutenFree} onChange = {onChange}/>
+</Label>
+<br />
+<div className='errors'>
+          <div>{errors.username}</div>
+          <div>{errors.email}</div>
+          <div>{errors.slice}</div>
+          <div>{errors.pineapple}</div>
+        </div>
+            
+            <Button id = "sumbitBtn" disabled = {disabled}>Order Pizza!</Button>
+        </Form>
     )
 }

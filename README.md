@@ -38,12 +38,12 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 ### Task 1: Project Set Up
 
-- [ ] Create a forked copy of this project
-- [ ] Add your team lead as collaborator on Github
-- [ ] Clone your OWN version of the repository (Not Lambda's by mistake!)
-- [ ] Create a new branch: `git checkout -b <firstName-lastName>`
-- [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly
-- [ ] Push commits: `git push origin <firstName-lastName>`
+- [x] Create a forked copy of this project
+- [x] Add your team lead as collaborator on Github
+- [x] Clone your OWN version of the repository (Not Lambda's by mistake!)
+- [x] Create a new branch: `git checkout -b <firstName-lastName>`
+- [x] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly
+- [x] Push commits: `git push origin <firstName-lastName>`
 
 ### Task 2: Project Requirements
 
@@ -51,12 +51,23 @@ Your finished project must include all of the following requirements:
 
 - [ ] A homepage that has a "/" route and links to your form (button, nav bar, or any other type of link is acceptable)
 - [ ] A form with a "/pizza" route
-- [ ] A name text input field
-- [ ] Validation for name - name must be at least 2 characters
-- [ ] A dropdown for pizza size
-- [ ] A checklist for toppings - at least 4 (hint: name each separately!)
-- [ ] Text input for special instructions
-- [ ] An Add to Order button that submits form and returns a database record of name, size, toppings and special instructions
+- [x] A name text input field
+- [x] Validation for name - name must be at least 2 characters
+- [x] A dropdown for pizza size
+- [x] A checklist for toppings - at least 4 (hint: name each separately!)
+- [x] Text input for special instructions
+- [x] An Add to Order button that submits form and returns a database record of name, size, toppings and special instructions
+
+Form Setup:
+x initial states
+x useStates
+helper functions
+x axios post
+xchangeHandler
+xSubmitHandler
+xuseEffect
+
+
 
 #### Testing MVP
 
@@ -72,7 +83,7 @@ In your solution, it is essential that you follow best practices and produce cle
 
 After finishing your required elements, you can push your work further. These goals may or may not be things you have learned in this module but they build on the material you just studied. Time allowing, stretch your limits and see if you can deliver on the following optional goals:
 
-- [ ] Toggle form component for gluten free crust
+- [x] Toggle form component for gluten free crust
 - [ ] Turn form element sections into nested routes
 - [ ] Test more of the application with Cypress
 - [ ] Build UI for the eventuality of a network error when POSTing the order
